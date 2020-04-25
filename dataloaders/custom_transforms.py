@@ -95,7 +95,7 @@ class RandomHorizontalFlip(object):
         img = sample['image']
         depth = sample['depth']
         mask = sample['label']
-        print(img.size)
+        
         if random.random() < 0.5:
             img = img.transpose(Image.FLIP_LEFT_RIGHT)
             depth = depth.transpose(Image.FLIP_LEFT_RIGHT)

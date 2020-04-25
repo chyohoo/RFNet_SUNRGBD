@@ -100,28 +100,26 @@ class SUNRGBD(Dataset):
                 f.write('\n'.join(self.label_dir_test))
 
     def __len__(self):
-        len_test = len(self.img_dir_test)
         if self.phase == 'train':
-            return len(self.img_dir_train[:-len_test])
+            return len(self.img_dir_train)
         elif self.phase == 'test':
-            return len(self.img_dir_test)
+            return len(self.img_dir_test[:-2000])
         elif self.phase == 'val':
-            return len(self.img_dir_test)
+            return len(self.img_dir_test[-2000:])
 
     def __getitem__(self, idx):
-        len_test = len(self.img_dir_test)
         if self.phase == 'train':
-            img_dir = self.img_dir_train[:-len_test]
-            depth_dir = self.depth_dir_train[:-len_test]
-            label_dir = self.label_dir_train[:-len_test]
+            img_dir = self.img_dir_train
+            depth_dir = self.depth_dir_train
+            label_dir = self.label_dir_train
         elif self.phase == 'test':
             img_dir = self.img_dir_test
             depth_dir = self.depth_dir_test
             label_dir = self.label_dir_test
         elif self.phase == 'val':
-            img_dir = self.img_dir_train[-len_test:]
-            depth_dir = self.depth_dir_train[-len_test:]
-            label_dir = self.label_dir_train[-len_test:]
+            img_dir = self.img_dir_train[-2000:]
+            depth_dir = self.depth_dir_train[-2000:]
+            label_dir = self.label_dir_train[-2000:]
 
         label = np.load(label_dir[idx])
         depth = Image.open(depth_dir[idx])
