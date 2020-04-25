@@ -1,6 +1,7 @@
 import numpy as np
 import scipy.io
-import imageio
+# import imageio
+from PIL import Image
 import h5py
 import os
 from torch.utils.data import Dataset
@@ -123,8 +124,8 @@ class SUNRGBD(Dataset):
             label_dir = self.label_dir_train[-len_test:]
 
         label = np.load(label_dir[idx])
-        depth = imageio.imread(depth_dir[idx])
-        image = imageio.imread(img_dir[idx])
+        depth = Image.open(depth_dir[idx])
+        image = Image.open(img_dir[idx]).convert('RGB')
 
         sample = {'image': image, 'depth': depth, 'label': label}
 
