@@ -201,8 +201,8 @@ def main():
     parser = argparse.ArgumentParser(description="PyTorch DeeplabV3Plus Training")
     parser.add_argument('--depth', action="store_true", default=False,
                         help='training with depth image or not (default: False)')
-    parser.add_argument('--dataset', type=str, default='cityscapes',
-                        choices=['citylostfound', 'cityscapes'],
+    parser.add_argument('--dataset', type=str, default='SUNRGBD',
+                        choices=['SUNRGBD'],
                         help='dataset name (default: cityscapes)')
     parser.add_argument('--use-sbd', action='store_true', default=True,
                         help='whether to use SBD dataset when pascal (default: True)')
