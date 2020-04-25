@@ -92,17 +92,17 @@ class CropBlackArea(object):
 
 class RandomHorizontalFlip(object):
     def __call__(self, sample):
-        img = sample['image']
+        image = sample['image']
         depth = sample['depth']
-        mask = sample['label']
+        label = sample['label']
         if random.random() < 0.5:
-            img = img.transpose(Image.FLIP_LEFT_RIGHT)
-            depth = depth.transpose(Image.FLIP_LEFT_RIGHT)
-            mask = mask.transpose(Image.FLIP_LEFT_RIGHT)
+            image = np.fliplr(image).copy()
+            depth = np.fliplr(depth).copy()
+            label = np.fliplr(label).copy()
 
-        return {'image': img,
+        return {'image': image,
                 'depth': depth,
-                'label': mask}
+                'label': label}
 
 
 class RandomRotate(object):

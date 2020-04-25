@@ -70,7 +70,7 @@ class SUNRGBD(Dataset):
 
                 if not os.path.exists(label_path):
                     os.makedirs(os.path.join(real_dir, 'label'), exist_ok=True)
-                    label = np.array(self.SUNRGBD2Dseg[seglabel.value[i][0]].value.transpose(1, 0))
+                    label = np.array(self.SUNRGBD2Dseg[seglabel.[()][i][0]].[()].transpose(1, 0))
                     np.save(label_path, label)
 
                 if meta_dir in split_train:
