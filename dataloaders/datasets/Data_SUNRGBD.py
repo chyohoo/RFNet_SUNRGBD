@@ -123,8 +123,8 @@ class SUNRGBD(Dataset):
 
         label = np.load(label_dir[idx])
         depth = Image.open(depth_dir[idx])
-        image = Image.open(img_dir[idx]).convert('RGB')
-        print(image.size)
+        image = Image.open(img_dir[idx])
+        
 
         sample = {'image': image, 'depth': depth, 'label': label}
 
