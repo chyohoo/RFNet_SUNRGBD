@@ -168,7 +168,7 @@ class SUNRGBD(Dataset):
             
             tr.scaleNorm(),
             tr.ToTensor(),
-            tr.Normalize()]])
+            tr.Normalize()])
 
         return composed_transforms(sample)
 
