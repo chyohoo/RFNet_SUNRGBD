@@ -131,6 +131,7 @@ class SUNRGBD(Dataset):
         
 
         sample = {'image': image, 'depth': depth, 'label': label}
+        print(image)
 
         if self.phase == "train":
             return self.transform_tr(sample)
