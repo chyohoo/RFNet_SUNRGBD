@@ -208,10 +208,10 @@ def main():
                         help='whether to use SBD dataset when pascal (default: True)')
     parser.add_argument('--workers', type=int, default=4,
                         metavar='N', help='dataloader threads')
-    parser.add_argument('--base-size', type=int, default=1024,
-                        help='base image size')
-    parser.add_argument('--crop-size', type=int, default=768,
-                        help='crop image size')
+    # parser.add_argument('--base-size', type=int, default=1024,
+    #                     help='base image size')
+    # parser.add_argument('--crop-size', type=int, default=768,
+    #                     help='crop image size')
     parser.add_argument('--loss-type', type=str, default='ce',
                         choices=['ce', 'focal'],
                         help='loss func type (default: ce)')
@@ -273,8 +273,7 @@ def main():
 
     if args.epochs is None:
         epoches = {
-            'cityscapes': 200,
-            'citylostfound': 200,
+            'SUNRGBD': 200,
         }
         args.epochs = epoches[args.dataset.lower()]
 
@@ -286,8 +285,8 @@ def main():
 
     if args.lr is None:
         lrs = {
-            'cityscapes': 0.0001,
-            'citylostfound': 0.0001,
+            'SUNRGBD': 0.0001,
+            
         }
         args.lr = lrs[args.dataset.lower()] / (4 * len(args.gpu_ids)) * args.batch_size
 

@@ -1,7 +1,7 @@
 import numpy as np
 import scipy.io
-# import imageio
-from PIL import Image
+import imageio
+# from PIL import Image
 import h5py
 import os
 from torch.utils.data import Dataset
@@ -9,6 +9,7 @@ from torchvision import transforms
 import torch
 from dataloaders import custom_transforms as tr
 from mypath import Path
+from custom_transforms import image_h, image_w
 
 img_dir_train_file = './data/img_dir_train.txt'
 depth_dir_train_file = './data/depth_dir_train.txt'
@@ -122,8 +123,8 @@ class SUNRGBD(Dataset):
             label_dir = self.label_dir_train[-2000:]
 
         label = np.load(label_dir[idx])
-        depth = Image.open(depth_dir[idx])
-        image = Image.open(img_dir[idx])
+        depth = imageio.imread(depth_dir[idx])
+        image = imageio.imread(img_dir[idx])
         
 
         sample = {'image': image, 'depth': depth, 'label': label}
@@ -138,12 +139,15 @@ class SUNRGBD(Dataset):
 
     def transform_tr(self, sample):
         composed_transforms = transforms.Compose([
-            # tr.CropBlackArea(),
-            tr.RandomHorizontalFlip(),
-            tr.RandomScaleCrop(base_size=self.args.base_size, crop_size=self.args.crop_size, fill=255),
-            # tr.RandomGaussianBlur(),
-            tr.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
-            tr.ToTensor()])
+            tr.scaleNorm(),
+            tr.RandomScale((1.0,1.4)),
+            tr.RandomHSV((0.9, 1.1),
+                         (0.9, 1.1),
+                         (25, 25)),
+            tr.RandomCrop(image_h,image_w),
+            tr.RandomFlip(),
+            tr.ToTensor(),
+            tr.Normalize()])
 
         return composed_transforms(sample)
 
@@ -151,9 +155,9 @@ class SUNRGBD(Dataset):
     def transform_val(self, sample):
 
         composed_transforms = transforms.Compose([
-            # tr.CropBlackArea(),
-            tr.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
-            tr.ToTensor()])
+            tr.scaleNorm(),
+            tr.ToTensor(),
+            tr.Normalize()])
 
         return composed_transforms(sample)
 
@@ -161,10 +165,10 @@ class SUNRGBD(Dataset):
     def transform_ts(self, sample):
 
         composed_transforms = transforms.Compose([
-            # tr.CropBlackArea(),
-            tr.FixedResize(size=self.args.crop_size),
-            tr.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
-            tr.ToTensor()])
+            
+            tr.scaleNorm(),
+            tr.ToTensor(),
+            tr.Normalize()]])
 
         return composed_transforms(sample)
 
