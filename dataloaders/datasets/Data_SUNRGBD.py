@@ -9,7 +9,10 @@ from torchvision import transforms
 import torch
 from dataloaders import custom_transforms as tr
 from mypath import Path
-from custom_transforms import image_h, image_w
+
+image_h = 480
+image_w = 640
+
 
 img_dir_train_file = './data/img_dir_train.txt'
 depth_dir_train_file = './data/depth_dir_train.txt'
