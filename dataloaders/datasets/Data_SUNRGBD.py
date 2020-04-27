@@ -127,15 +127,16 @@ class SUNRGBD(Dataset):
 
         label = np.load(label_dir[idx])
         depth = imageio.imread(depth_dir[idx])
-        print(""depth.shape)
+        print("depth",depth.shape)
         image = imageio.imread(img_dir[idx])
+
         
 
         sample = {'image': image, 'depth': depth, 'label': label}
 
         if self.phase == "train":
             # sam = self.transform_tr(sample)
-            # print(sam['image'])
+            print("depth_tr",sam['depth'].shape)
             return self.transform_tr(sample)
         elif self.phase == "test":
             return self.transform_ts(sample)
