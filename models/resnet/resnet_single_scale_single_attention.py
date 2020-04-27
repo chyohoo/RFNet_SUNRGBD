@@ -289,6 +289,8 @@ class ResNet(nn.Module):
         x = self.maxpool(x)
 
         depth = depth.unsqueeze(1)
+        print("depth_rs_shape",depth.shape)
+        print("depth_rs",depth)
         y = self.conv1_d(depth)
         y = self.bn1_d(y)
         y = self.relu_d(y)
