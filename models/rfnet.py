@@ -12,10 +12,9 @@ class RFNet(nn.Module):
         self.logits = _BNReluConv(self.backbone.num_features, self.num_classes, batch_norm=use_bn)
 
     def forward(self, rgb_inputs, depth_inputs = None):
-        # print("depth_rf",depth_inputs)
+        print("rgb_inputs",rgb_inputs)
         print("depth_rf_shape",depth_inputs.shape)
         x, additional = self.backbone(rgb_inputs, depth_inputs)
-        # print("x",x)
         print("x_shape",x.shape)
         logits = self.logits.forward(x)
         # print("logit_fwd",logits)

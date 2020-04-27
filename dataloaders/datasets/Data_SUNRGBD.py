@@ -127,7 +127,6 @@ class SUNRGBD(Dataset):
 
         label = np.load(label_dir[idx])
         depth = imageio.imread(depth_dir[idx])
-        print("label",label.shape)
         image = imageio.imread(img_dir[idx])
 
         
