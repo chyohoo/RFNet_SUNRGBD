@@ -12,16 +12,6 @@ image_w = 640
 
 
 
-class Relabel(object):
-    def __init__(self, olabel, nlabel):  # change trainid label from olabel to nlabel
-        self.olabel = olabel
-        self.nlabel = nlabel
-
-    def __call__(self, tensor):
-        # assert (isinstance(tensor, torch.LongTensor) or isinstance(tensor,
-        #                                                            torch.ByteTensor)), 'tensor needs to be LongTensor'
-        tensor[tensor == self.olabel] = self.nlabel
-        return tensor
 
 
 class scaleNorm(object):

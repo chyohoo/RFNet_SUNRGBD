@@ -25,7 +25,8 @@ class SegmentationLosses(object):
                                         size_average=self.size_average)
         if self.cuda:
             criterion = criterion.cuda()
-
+        print("target_shape", target.shape)
+        print("target_long_shape",target.long())
         loss = criterion(logit, target.long())
 
         if self.batch_average:
