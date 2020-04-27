@@ -149,7 +149,7 @@ class ToTensor(object):
         # numpy image: H x W x C
         # torch image: C X H X W
         image = image.transpose((2, 0, 1))
-        depth = np.expand_dims(depth, 0).astype(np.float)
+        # depth = np.expand_dims(depth, 0).astype(np.float)
         return {'image': torch.from_numpy(image).float(),
                 'depth': torch.from_numpy(depth).float(),
                 'label': torch.from_numpy(label).float(),
