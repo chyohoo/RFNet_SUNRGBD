@@ -106,6 +106,7 @@ class Trainer(object):
             if self.args.depth:
                 output = self.model(image, depth)
                 print("output",output)
+                print("output",output.shape)
             else:
                 output = self.model(image)
             loss = self.criterion(output, target)
