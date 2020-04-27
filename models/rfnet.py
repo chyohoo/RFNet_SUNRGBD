@@ -15,7 +15,9 @@ class RFNet(nn.Module):
         print("depth_rf",depth_inputs)
         print("depth_rf_shape",depth_inputs.shape)
         x, additional = self.backbone(rgb_inputs, depth_inputs)
+        print("x",x)
         logits = self.logits.forward(x)
+        print("logit_fwd",logits)
         logits_upsample = upsample(logits, rgb_inputs.shape[2:])
         return logits_upsample
 
