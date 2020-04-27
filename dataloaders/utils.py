@@ -22,7 +22,7 @@ def decode_segmap(label_mask, dataset, plot=False):
         (np.ndarray, optional): the resulting decoded color image.
     """
     if dataset == 'SUNRGBD':
-        n_classes = 41
+        n_classes = 37
         label_colours = get_SUNRGBD_labels()
     else:
         raise NotImplementedError
