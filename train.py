@@ -93,7 +93,7 @@ class Trainer(object):
         num_img_tr = len(self.train_loader)
         for i, sample in enumerate(tbar):
             if self.args.depth:
-                print("depth_tr",sample['depth'])
+                print("depth_tr_shape",sample['depth'].shape)
                 image, depth, target = sample['image'], sample['depth'], sample['label']
             else:
                 image, target = sample['image'], sample['label']
@@ -105,7 +105,7 @@ class Trainer(object):
             self.optimizer.zero_grad()
             if self.args.depth:
                 output = self.model(image, depth)
-                print("output",output)
+                # print("output",output)
                 print("output",output.shape)
             else:
                 output = self.model(image)

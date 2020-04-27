@@ -290,7 +290,7 @@ class ResNet(nn.Module):
 
         # depth = depth.unsqueeze(1)
         print("depth_rs_shape",depth.shape)
-        print("depth_rs",depth)
+        # print("depth_rs",depth)
         y = self.conv1_d(depth)
         y = self.bn1_d(y)
         y = self.relu_d(y)
