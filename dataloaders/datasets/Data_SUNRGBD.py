@@ -135,7 +135,7 @@ class SUNRGBD(Dataset):
         sample = {'image': image, 'depth': depth, 'label': label}
 
         if self.phase == "train":
-            # sam = self.transform_tr(sample)
+            sam = self.transform_tr(sample)
             print("depth_tr",sam['depth'].shape)
             return self.transform_tr(sample)
         elif self.phase == "test":
