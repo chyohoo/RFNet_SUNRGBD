@@ -25,10 +25,18 @@ class SegmentationLosses(object):
                                         size_average=self.size_average)
         if self.cuda:
             criterion = criterion.cuda()
-        print("target_shape", target.shape)
-        print("target_long_shape",target.long().shape)
-        loss = criterion(logit, target.long())
 
+
+        print("target_shape", target.shape)
+        print("logit_shape", logit.shape)
+        losses = []
+        for _logit, _target in zip(logit, target):
+            mask = _target > 0
+            targets_m = _target.clone()
+            targets_m[mask] -= 1
+            _loss = criterion(_logit, targets_m.long())
+            losses.append(torch.sum(torch.masked_select(_loss, mask)) / torch.sum(mask.float()))
+        loss =sum(losses)
         if self.batch_average:
             loss /= n
 
