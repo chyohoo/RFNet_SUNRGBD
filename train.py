@@ -106,7 +106,7 @@ class Trainer(object):
             if self.args.depth:
                 output = self.model(image, depth)
                 # print("output",output)
-                print("output",output.shape)
+                # print("output",output.shape)
             else:
                 output = self.model(image)
             loss = self.criterion(output, target)
@@ -121,7 +121,7 @@ class Trainer(object):
                 if self.args.depth:
                     self.summary.visualize_image(self.writer, self.args.dataset, image, target, output, global_step)
 
-                    depth_display=depth[0].cpu().unsqueeze(0)
+                    depth_display=depth[0].cpu() 
                     depth_display = depth_display.mul_(self.std_depth).add_(self.mean_depth)
                     depth_display = depth_display.numpy()
                     depth_display = depth_display*255

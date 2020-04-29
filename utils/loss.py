@@ -31,8 +31,8 @@ class SegmentationLosses(object):
         print("logit_shape", logit.shape)
         losses = []
 
-        target_ = target.clone()
-        target_[target_ > 0] -= 1
+        target_ = target.clone()  
+        target_[target_ > 0] -= 1    //shift the labels from 1-based to 0-based
         loss = criterion(logit,target_.long())
 
         if self.batch_average:
