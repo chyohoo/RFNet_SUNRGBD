@@ -93,7 +93,7 @@ class Trainer(object):
         num_img_tr = len(self.train_loader)
         for i, sample in enumerate(tbar):
             if self.args.depth:
-                print("target_tr_shape",sample['label'].shape)
+                # print("target_tr_shape",sample['label'].shape)
                 image, depth, target = sample['image'], sample['depth'], sample['label']
             else:
                 image, target = sample['image'], sample['label']
