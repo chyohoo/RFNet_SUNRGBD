@@ -20,15 +20,15 @@ class SegmentationLosses(object):
 
     def CrossEntropyLoss(self, logit, target):
         n, c, h, w = logit.size()
-        print("logit_size",logit.size())
+        # print("logit_size",logit.size())
         criterion = nn.CrossEntropyLoss(weight=self.weight, ignore_index=self.ignore_index,
                                         size_average=self.size_average)
         if self.cuda:
             criterion = criterion.cuda()
 
 
-        print("target_shape", target.shape)
-        print("logit_shape", logit.shape)
+        # print("target_shape", target.shape)
+        # print("logit_shape", logit.shape)
         losses = []
 
         target_ = target.clone()  
