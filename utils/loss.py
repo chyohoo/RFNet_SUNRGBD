@@ -32,7 +32,7 @@ class SegmentationLosses(object):
         losses = []
 
         target_ = target.clone()  
-        target_[target_ > 0] -= 1    //shift the labels from 1-based to 0-based
+        target_[target_ > 0] -= 1    
         loss = criterion(logit,target_.long())
 
         if self.batch_average:
