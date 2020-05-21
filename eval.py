@@ -130,8 +130,8 @@ def load_my_state_dict(model, state_dict):  # custom function to load model when
 
 def main():
     parser = argparse.ArgumentParser(description="PyTorch RFNet validation")
-    parser.add_argument('--dataset', type=str, default='cityscapes',
-                        choices=['citylostfound', 'cityscapes'],
+    parser.add_argument('--dataset', type=str, default='SUNRGBD',
+                        choices=['SUNRGBD'],
                         help='dataset name (default: cityscapes)')
     parser.add_argument('--workers', type=int, default=4,
                         metavar='N', help='dataloader threads')
