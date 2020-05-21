@@ -154,9 +154,9 @@ def main():
                         help='set the checkpoint name')
     parser.add_argument('--weight-path', type=str, default=None,
                         help='enter your path of the weight')
-    parser.add_argument('--label-save-path', type=str, default='E:/RFNet/test/label/',
+    parser.add_argument('--label-save-path', type=str, default='~/workspace/test/label',
                         help='path to save label')
-    parser.add_argument('--merge-label-save-path', type=str, default='E:/RFNet/test/merge/',
+    parser.add_argument('--merge-label-save-path', type=str, default='~/workspace/test/merge',
                         help='path to save merged label')
     parser.add_argument('--merge', action='store_true', default=False, help='merge image and label')
     parser.add_argument('--evaluate', action='store_true', default=False, help='evaluate')
