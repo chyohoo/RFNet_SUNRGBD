@@ -78,14 +78,13 @@ def get_SUNRGBD_labels():
     """
     return np.asarray([[0, 0, 0],
                  # 0=background
-                 [148, 65, 137], [255, 116, 69], [86, 156, 137],
-                 [202, 179, 158], [155, 99, 235], [161, 107, 108],
-                 [133, 160, 103], [76, 152, 126], [84, 62, 35],
+                 [148, 65, 137],
+                 [202, 179, 158], [155, 99, 235],, [76, 152, 126], [84, 62, 35],
                  [44, 80, 130], [31, 184, 157], [101, 144, 77],
                  [23, 197, 62], [141, 168, 145], [142, 151, 136],
                  [115, 201, 77], [100, 216, 255], [57, 156, 36],
                  [88, 108, 129], [105, 129, 112], [42, 137, 126],
-                 [155, 108, 249], [166, 148, 143], [81, 91, 87],
+                 [155, 108, 249],  [81, 91, 87],
                  [100, 124, 51], [73, 131, 121], [157, 210, 220],
                  [134, 181, 60], [221, 223, 147], [123, 108, 131],
                  [161, 66, 179], [163, 221, 160], [31, 146, 98],
@@ -96,35 +95,59 @@ def get_SUNRGBD_labels():
 
 def colormap_bdd(n):
     cmap=np.zeros([n, 3]).astype(np.uint8)
-    cmap[0,:] = np.array([128, 64, 128])
-    cmap[1,:] = np.array([244, 35, 232])
-    cmap[2,:] = np.array([ 70, 70, 70])
-    cmap[3,:] = np.array([102, 102, 156])
-    cmap[4,:] = np.array([190, 153, 153])
-    cmap[5,:] = np.array([153, 153, 153])
+    cmap[0,:] = np.array([148, 65, 137])
+    cmap[1,:] = np.array([202, 179, 158])
+    cmap[2,:] = np.array([ 155, 99, 235])
+    cmap[3,:] = np.array([155, 99, 235])
+    cmap[4,:] = np.array([76, 152, 126])
+    cmap[5,:] = np.array([84, 62, 35])
+    cmap[6,:] = np.array([44, 80, 130])
+    cmap[7,:] = np.array([31, 184, 157])
+    cmap[8,:] = np.array([101, 144, 77])
+    cmap[9,:] = np.array([23, 197, 62])
+    cmap[10,:]= np.array([141, 168, 145])
+    cmap[11,:]= np.array([142, 151, 136])
+    cmap[12,:]= np.array([115, 201, 77])
+    cmap[13,:]= np.array([100, 216, 255])
+    cmap[14,:]= np.array([57, 156, 36])
+    cmap[15,:]= np.array([88, 108, 129])
+    cmap[16,:]= np.array([105, 129, 112])
+    cmap[17,:]= np.array([42, 137, 126])
 
-    cmap[6,:] = np.array([250, 170, 30])
-    cmap[7,:] = np.array([220, 220, 0])
-    cmap[8,:] = np.array([107, 142, 35])
-    cmap[9,:] = np.array([152, 251, 152])
-    cmap[10,:]= np.array([70, 130, 180])
+    cmap[18,:]= np.array([155, 108, 249])
+    cmap[19,:]= np.array([81, 91, 87]) #多加了一类small obstacle
+    cmap[20,:] = np.array([100, 124, 51])
 
-    cmap[11,:]= np.array([220, 20, 60])
-    cmap[12,:]= np.array([255, 0, 0])
-    cmap[13,:]= np.array([0, 0, 142])
-    cmap[14,:]= np.array([0, 0, 70])
-    cmap[15,:]= np.array([0, 60, 100])
+    cmap[21,:] = np.array([73, 131, 121])
+    cmap[22,:] = np.array([157, 210, 220])
+    cmap[23,:] = np.array([134, 181, 60])
 
-    cmap[16,:]= np.array([0, 80, 100])
-    cmap[17,:]= np.array([0, 0, 230])
-    cmap[18,:]= np.array([119, 11, 32])
-    cmap[19,:]= np.array([111, 74, 0]) #多加了一类small obstacle
+    cmap[24,:] = np.array([221, 223, 147])
+    cmap[25,:] = np.array([123, 108, 131])
+    cmap[26,:] = np.array([161, 66, 179])
+
+    cmap[27,:] = np.array([163, 221, 160])
+    cmap[28,:] = np.array([31, 146, 98])
+    cmap[29,:] = np.array([99, 121, 30])
+
+    cmap[30,:] = np.array([49, 89, 240])
+    cmap[31,:] = np.array([116, 108, 9])
+    cmap[32,:] = np.array([161, 176, 169])
+
+    cmap[33,:] = np.array([80, 29, 135])
+    cmap[34,:] = np.array([177, 105, 197])
+    cmap[35,:] = np.array([139, 110, 246])
+
+    cmap[36,:] = np.array([0, 0, 0])
+    # cmap[37,:] = np.array([153, 153, 153])
+ 
+
 
     return cmap
 
 class Colorize:
 
-    def __init__(self, n=41): # n = nClasses
+    def __init__(self, n=37): # n = nClasses
         # self.cmap = colormap(256)
         self.cmap = colormap_bdd(256)
         self.cmap[n] = self.cmap[-1]
