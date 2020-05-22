@@ -91,7 +91,7 @@ class Validator(object):
                 os.makedirs(os.path.dirname(merge_label_name), exist_ok=True)
 
                 pre_color_image = ToPILImage()(pre_colors[i])  # pre_colors.dtype = float64
-                pre_color_image.save(label_name)
+                pre_color_image.save(label_name+ ".png")
 
                 if (self.args.merge):
                     image_merge(image_name[i], pre_color_image,merge_label_name)
