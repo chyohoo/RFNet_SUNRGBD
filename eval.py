@@ -85,8 +85,8 @@ class Validator(object):
             # save
             for i in range(pre_colors.shape[0]):
 
-                label_name = os.path.join(self.args.label_save_path + self.args.weight_path.split('run/')[1], image_name[i])
-                merge_label_name = os.path.join(self.args.merge_label_save_path + self.args.weight_path.split('run/')[1], image_name[i])
+                label_name = os.path.join(self.args.label_save_path + self.args.weight_path.split('run/')[1], str(image_name[i]))
+                merge_label_name = os.path.join(self.args.merge_label_save_path + self.args.weight_path.split('run/')[1], str(image_name[i]))
                 os.makedirs(os.path.dirname(label_name), exist_ok=True)
                 os.makedirs(os.path.dirname(merge_label_name), exist_ok=True)
 
