@@ -62,7 +62,7 @@ class SpatialPyramidPooling(nn.Module):
         self.spp.add_module('spp_fuse',
                             _BNReluConv(final_size, out_size, k=1, bn_momentum=bn_momentum, batch_norm=use_bn))
 
-@torch.jit.script
+    @torch.jit.script
     def forward(self, x):
         levels = []
         target_size = x.size()[2:4]
