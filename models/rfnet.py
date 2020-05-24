@@ -1,3 +1,4 @@
+import torch
 import torch.nn as nn
 from itertools import chain # 串联多个迭代对象
 
