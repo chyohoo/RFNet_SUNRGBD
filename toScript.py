@@ -18,11 +18,11 @@ def load_my_state_dict(model, state_dict):  # custom function to load model when
 
 resnet_ = resnet18(pretrained=True, efficient=False, use_bn= True)
 model_ =RFNet(resnet_,num_classes=37, use_bn= True)
-
+model_ = torch.nn.DataParallel(model_)
 
 device_ = torch.device('cpu')
 new_state_dict_ = torch.load('./run/SUNRGBD/test/model_best.pth',map_location=device_)
-model_ = load_my_state_dict(model_.module, new_state_dict_['state_dict'])
+model_ = load_my_state_dict(model_, new_state_dict_['state_dict'])
 
 model_.eval()
 
