@@ -6,6 +6,7 @@ from .util import _BNReluConv, upsample
 
 
 class RFNet(torch.jit.ScriptModule):
+    __constants__ = ['logits']
     def __init__(self, backbone, num_classes, use_bn=True):
         super(RFNet, self).__init__()
         self.  backbone = backbone
