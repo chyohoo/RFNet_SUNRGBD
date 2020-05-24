@@ -44,7 +44,8 @@ class _Upsample(nn.Module):
         return x
 
 
-class SpatialPyramidPooling(nn.Module):
+class SpatialPyramidPooling(torch.jit.ScriptModule):
+    __constants__ = ['spp']
     def __init__(self, num_maps_in, num_levels, bt_size=512, level_size=128, out_size=128,
                  grids=(6, 3, 2, 1), square_grid=False, bn_momentum=0.1, use_bn=True):
         super(SpatialPyramidPooling, self).__init__()
@@ -62,7 +63,7 @@ class SpatialPyramidPooling(nn.Module):
         self.spp.add_module('spp_fuse',
                             _BNReluConv(final_size, out_size, k=1, bn_momentum=bn_momentum, batch_norm=use_bn))
 
-    @torch.jit.script
+    @torch.jit.script_method
     def forward(self, x):
         levels = []
         target_size = x.size()[2:4]
