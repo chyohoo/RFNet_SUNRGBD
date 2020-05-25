@@ -74,7 +74,7 @@ class SpatialPyramidPooling(nn.Module):
 
         for i in range(1, num):
             if not self.square_grid:
-                grid_size = (self.grids[i - 1], max(1, np.round(ar * self.grids[i - 1])))
+                grid_size = (self.grids[i - 1], int(max(1, np.round(ar * self.grids[i - 1])))) #此处需要修改
                 x_pooled = F.adaptive_avg_pool2d(x, grid_size)
             else:
                x_pooled = F.adaptive_avg_pool2d(x, self.grids[i - 1])
