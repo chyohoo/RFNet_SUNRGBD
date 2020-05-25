@@ -40,7 +40,7 @@ input_example = (image_example, depth_example)
 
 with torch.no_grad():
     traced_model = torch.jit.trace(model_,input_example)
-    traced_model.save('./traced_model')
+    traced_model.save('./traced_model.pt')
 
 
 

@@ -46,7 +46,7 @@ class _Upsample(nn.Module):
 
 class SpatialPyramidPooling(nn.Module):
     def __init__(self, num_maps_in, num_levels, bt_size=512, level_size=128, out_size=128,
-                 grids=(6, 3, 2, 1), square_grid=False, bn_momentum=0.1, use_bn=True):
+                 grids=(6, 3, 2, 1), square_grid=True, bn_momentum=0.1, use_bn=True):
         super(SpatialPyramidPooling, self).__init__()
         self.grids = grids
         self.square_grid = square_grid
