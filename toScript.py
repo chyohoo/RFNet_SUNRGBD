@@ -27,25 +27,26 @@ from collections import OrderedDict
 new_state_dict = OrderedDict()
 for k, v in state_dict.items():
     name = k[7:] # remove module.
+    print(k[:7])
     new_state_dict[name] = v
-model_.load_state_dict(new_state_dict)
+# model_.load_state_dict(new_state_dict)
 
-# model_ = load_my_state_dict(model_, new_state_dict['state_dict'])
+# # model_ = load_my_state_dict(model_, new_state_dict['state_dict'])
 
 
-model_.eval()
+# model_.eval()
 
-# image_shape torch.Size([8, 3, 480, 640]) b x c x h x w
-# depth_shape torch.Size([8, 1, 480, 640])
-# 记得归一化图像 /255
+# # image_shape torch.Size([8, 3, 480, 640]) b x c x h x w
+# # depth_shape torch.Size([8, 1, 480, 640])
+# # 记得归一化图像 /255
 
-image_example = torch.rand(1,3,480,640)
-depth_example = torch.rand(1,1,480,640)
-input_example = (image_example, depth_example)
+# image_example = torch.rand(1,3,480,640)
+# depth_example = torch.rand(1,1,480,640)
+# input_example = (image_example, depth_example)
 
-with torch.no_grad():
-    traced_model = torch.jit.trace(model_,input_example)
-    traced_model.save('./traced_model')
+# with torch.no_grad():
+#     traced_model = torch.jit.trace(model_,input_example)
+#     traced_model.save('./traced_model')
 
 
 
