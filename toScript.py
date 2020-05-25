@@ -4,16 +4,16 @@ from models.rfnet import RFNet
 from models.resnet.resnet_single_scale_single_attention import *
 
 
-def load_my_state_dict(model, state_dict):  # custom function to load model when not all dict elements
-    own_state = model.state_dict()
-    for name, param in state_dict.items():
-        if name not in own_state:
-            print('{}not in model_state'.format(name))
-            continue
-        else:
-            own_state[name].copy_(param)
+# def load_my_state_dict(model, state_dict):  # custom function to load model when not all dict elements
+#     own_state = model.state_dict()
+#     for name, param in state_dict.items():
+#         if name not in own_state:
+#             print('{}not in model_state'.format(name))
+#             continue
+#         else:
+#             own_state[name].copy_(param)
 
-    return model
+#     return model
 
 
 resnet_ = resnet18(pretrained=True, efficient=False, use_bn= True)
@@ -28,7 +28,10 @@ new_state_dict = OrderedDict()
 for k, v in state_dict.items():
     name = k[7:] # remove module.
     new_state_dict[name] = v
-model_ = load_my_state_dict(model_, new_state_dict['state_dict'])
+model_.load_state_dict(new_state_dict)
+
+# model_ = load_my_state_dict(model_, new_state_dict['state_dict'])
+
 
 model_.eval()
 
