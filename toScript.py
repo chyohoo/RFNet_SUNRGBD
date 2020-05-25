@@ -21,7 +21,7 @@ model_ = RFNet(resnet_,num_classes=37, use_bn= True)
 model_ =model_.cuda()
 
 device_ = torch.device('cpu')
-new_state_dict_ = torch.load('./run/SUNRGBD/test/model_best.pth',map_location=device_)
+new_state_dict_ = torch.load('~/workspace/modelpath/model_best.pth',map_location=device_)
 
 
 
@@ -41,7 +41,7 @@ depth_example = torch.rand(1,1,480,640)
 
 with torch.no_grad():
     traced_model = torch.jit.trace(model_,(image_example,depth_example))
-    traced_model.save('./traced_model.pt')
+    traced_model.save('./traced_model_cpu.pt')
     print('完成')
 
 
