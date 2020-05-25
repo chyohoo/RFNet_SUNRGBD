@@ -34,10 +34,8 @@ model_.eval()
 # depth_shape torch.Size([8, 1, 480, 640])
 # 记得归一化图像 /255
 
-# image_example = torch.rand(1,3,480,640).cuda()
-# depth_example = torch.rand(1,1,480,640).cuda()
-image_example = torch.rand(1,3,480,640)
-depth_example = torch.rand(1,1,480,640)
+image_example = torch.rand(1,3,480,640).cuda()
+depth_example = torch.rand(1,1,480,640).cuda() #保存时的模型使用cuda输入 此处也必须为cuda
 
 with torch.no_grad():
     traced_model = torch.jit.trace(model_,(image_example,depth_example))
