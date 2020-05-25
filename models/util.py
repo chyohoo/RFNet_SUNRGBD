@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import numpy as np
 
 upsample = lambda x, size: F.interpolate(x, size, mode='bilinear', align_corners=False)
 batchnorm_momentum = 0.01 / 2
@@ -73,7 +74,7 @@ class SpatialPyramidPooling(nn.Module):
 
         for i in range(1, num):
             if not self.square_grid:
-                grid_size = (self.grids[i - 1], max(1, round(ar * self.grids[i - 1])))
+                grid_size = (self.grids[i - 1], max(1, np.round(ar * self.grids[i - 1])))
                 x_pooled = F.adaptive_avg_pool2d(x, grid_size)
             else:
                x_pooled = F.adaptive_avg_pool2d(x, self.grids[i - 1])
