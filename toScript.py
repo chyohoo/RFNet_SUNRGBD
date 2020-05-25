@@ -36,10 +36,9 @@ model_.eval()
 
 image_example = torch.rand(1,3,480,640)
 depth_example = torch.rand(1,1,480,640)
-input_example = (image_example, depth_example)
 
 with torch.no_grad():
-    traced_model = torch.jit.trace(model_,input_example)
+    traced_model = torch.jit.trace(model_,(image_example,depth_example))
     traced_model.save('./traced_model.pt')
 
 
