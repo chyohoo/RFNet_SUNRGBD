@@ -20,8 +20,8 @@ resnet_ = resnet18(pretrained=True, efficient=False, use_bn= True)
 model_ = RFNet(resnet_,num_classes=37, use_bn= True)
 # model_ = torch.nn.DataParallel(model_)   #并不支持trace nn.DataParallel
 
-device_ = torch.device('cpu')
-new_state_dict_ = torch.load('./run/SUNRGBD/test/model_best.pth',map_location=device_)
+# device_ = torch.device('cpu')
+new_state_dict_ = torch.load('./run/SUNRGBD/test/model_best.pth')
 
 
 
