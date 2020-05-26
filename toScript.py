@@ -25,7 +25,7 @@ new_state_dict_ = torch.load('./model_best.pth',map_location='cpu')
 
 
 
-model_ = load_my_state_dict(model_module, new_state_dict_['state_dict'])
+model_ = load_my_state_dict(model_.module, new_state_dict_['state_dict'])
 
 
 model_.eval()
